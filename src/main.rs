@@ -1,3 +1,5 @@
+use std::thread;
+
 #[derive(Hash, Eq, PartialEq, Debug)]
 enum Formula {
   FVar(u32),
@@ -139,19 +141,22 @@ fn dnf_sat (f : Formula, neg_mode : bool) -> Vec<Valuation> {
       dnf_sat(*f, !neg_mode)
     },
     FDisj(f1, f2) => {
-      let l = dnf_sat(*f1, neg_mode);
-      let r = dnf_sat(*f2, neg_mode);
+      let lhandle= thread::spawn(move || dnf_sat(*f1, neg_mode));
+      let rhandle= thread::spawn(move || dnf_sat(*f2, neg_mode));
+      let l = lhandle.join().unwrap();
+      let r = rhandle.join().unwrap();
       if neg_mode {
         // Set Cross
         return val_set_cross(l, r)
 
       }
-    val_set_union(l, r)
-
+      val_set_union(l, r)
     }
     FConj(f1, f2) => {
-      let l = dnf_sat(*f1, neg_mode);
-      let r = dnf_sat(*f2, neg_mode);
+      let lhandle= thread::spawn(move || dnf_sat(*f1, neg_mode));
+      let rhandle= thread::spawn(move || dnf_sat(*f2, neg_mode));
+      let l = lhandle.join().unwrap();
+      let r = rhandle.join().unwrap();
       if neg_mode {
         // Set Union
         return val_set_union(l, r)
