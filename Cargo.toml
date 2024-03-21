@@ -12,3 +12,6 @@ path="src/main.rs"
 [[bin]]
 name="converter"
 path="src/converter.rs"
+
+[dependencies]
+rayon = "1.9"
