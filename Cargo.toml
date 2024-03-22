@@ -7,7 +7,7 @@ edition = "2021"
 
 [[bin]]
 name="main"
-path="src/main.rs"
+path="src/main_current.rs"
 
 [[bin]]
 name="converter"
@@ -15,3 +15,4 @@ path="src/converter.rs"
 
 [dependencies]
 rayon = "1.9"
+crossbeam = "0.8.4"

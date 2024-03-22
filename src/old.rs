@@ -164,6 +164,19 @@ fn main() {
         ),
         false,
     );
+    let vval = dnf_sat(
+        FConj(
+            Box::new(FConj(
+                Box::new(FDisj(Box::new(FVar(1)), Box::new(FNeg(Box::new(FVar(2)))))),
+                Box::new(FConj(Box::new(FVar(3)), Box::new(FVar(2)))),
+            )),
+            Box::new(FDisj(
+                Box::new(FVar(2)),
+                Box::new(FConj(Box::new(FVar(1)), Box::new(FNeg(Box::new(FVar(4)))))),
+            )),
+        ),
+        false,
+    );
     if vval.len() == 0 {
         print!("UNSAT!")
     }
