@@ -13,6 +13,10 @@ path="src/main_current.rs"
 name="converter"
 path="src/converter.rs"
 
+[[bin]]
+name="converter_red_mem"
+path="src/converter_red_mem.rs"
+
 [dependencies]
 rayon = "1.9"
 crossbeam = "0.8.4"

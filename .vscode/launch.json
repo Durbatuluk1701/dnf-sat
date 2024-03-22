@@ -8,10 +8,9 @@
       "type": "lldb",
       "request": "launch",
       "name": "Launch LLDB",
-      "program": "${workspaceFolder}/target/debug/converter",
-      "args": [
-        "/home/w732t351/Downloads/vliw_sat_4.0/9vliw_m_9stages_iq3_C1_bug1.cnf"
-      ],
+      "preLaunchTask": "rust: cargo build",
+      "program": "${workspaceFolder}/target/debug/converter_red_mem",
+      "args": ["/home/w732t351/repos/dnf-sat/test_sat_7.cnf"],
       "cwd": "${workspaceFolder}"
     }
   ]
